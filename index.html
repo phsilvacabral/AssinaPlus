@@ -1,0 +1,135 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Assina+</title>
+</head>
+<body>
+    <section id="login-cadastro">
+        <h1 id="title">Assina+</h1>
+        <p id="subtitle">Faça login para acessar o sistema de gestão de contratos</p>
+        <div id="buttons">
+            <div id="button-login">Fazer Login</div>
+            <div id="button-cadastro">Criar Conta</div>
+        </div>
+        <p id="msg-login">Não tem uma conta? Solicite seu cadastro</p>
+    </section>
+
+    <!-- Fundo escurecido -->
+    <div id="backdrop" class="backdrop hidden"></div>
+
+    <!-- Modal de Login -->
+    <div id="loginModal" class="modal hidden">
+        <div class="modal-header">
+            <div class="close-button">&times;</div>
+            <h2 class="title-modal">Acesso ao Sistema</h2>
+            <p class="subtitle-modal">Digite suas credenciais para acessar o sistema de gestão de contratos</p>
+        </div>
+        <div class="modal-body">
+            <form>
+                <label for="email">Usuário<input type="email" placeholder="Digite seu usuário" required></label>
+                <label for="senha">Senha<input type="password" placeholder="Digite sua senha" required></label>
+                <button type="submit">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal de Cadastro -->
+    <div id="cadastroModal" class="modal hidden">
+        <div class="modal-header">
+            <div class="close-button">&times;</div>
+            <h2 class="title-modal">Criar Conta</h2>
+            <p class="subtitle-modal">Preencha os dados para solicitar acesso ao sistema</p>
+        </div>
+        <div class="modal-body">
+            <form>
+                <label for="nome">Nome Completo
+                    <input type="text" placeholder="Seu nome completo" required>
+                </label>
+
+                <label for="email">Email
+                    <input type="email" placeholder="seu.email@empresa.com" required>
+                </label>
+                
+                <label for="usuario">Nome de Usuário 
+                    <input type="text" placeholder="nome_usuário" required>
+                </label>
+                
+                <label for="senha">Senha
+                    <input type="password" placeholder="Sua senha" required>
+                </label>
+
+                <label for="confrimarSenha">Confirmar senha
+                    <input type="password" placeholder="Confirme sua senha" required>
+                </label>
+
+                <label for="setor" class="label-select">
+                    Selecione seu setor:
+                    <select name="setor" id="setor" required>
+                        <option value="Selecione">Selecione seu setor</option>
+                        <option value="Administrativo">Administrativo</option>
+                        <option value="Compras">Compras</option>
+                        <option value="Financeiro">Financeiro</option>
+                        <option value="RH">RH</option>
+                        <option value="TI">TI</option>
+                        <option value="Juridico">Juridico</option>
+                        <option value="Logistica">Logística</option>
+                        <option value="Marketing">Marketing</option>
+                        <option value="Sustentabilidae">Sustentabilidade</option>
+                        <option value="Comercial">Comercial</option>
+                    </select>
+                </label>
+
+                <label for="tipoUsuario" class="label-select">Tipo de Usuário:
+                    <select name="tipoUusuário" id="tipoUsuario">
+                        <option value="Selecione">Selecione o tipo de usuário</option>
+                        <option value="Solicitante">Solicitante</option>
+                        <option value="Responsável">Responsável</option>
+                    </select>
+                </label>
+                <button type="submit">Cadastrar</button>
+            </form>
+
+            <span id="msg-modal-cadastro">Sua solicitação será analisada pelo administrador do sistema</span>
+        </div>
+    </div>
+
+    <script>
+        // Elementos
+        const loginButton = document.getElementById('button-login');
+        const cadastroButton = document.getElementById('button-cadastro');
+        const loginModal = document.getElementById('loginModal');
+        const cadastroModal = document.getElementById('cadastroModal');
+        const backdrop = document.getElementById('backdrop');
+        const closeButtons = document.querySelectorAll('.close-button');
+
+        // Função para abrir um modal
+        function openModal(modal) {
+            backdrop.classList.remove('hidden');
+            modal.classList.remove('hidden');
+        }
+
+        // Função para fechar todos os modais
+        function closeModal() {
+            backdrop.classList.add('hidden');
+            loginModal.classList.add('hidden');
+            cadastroModal.classList.add('hidden');
+        }
+
+        // Event Listeners
+        loginButton.addEventListener('click', () => openModal(loginModal));
+        cadastroButton.addEventListener('click', () => openModal(cadastroModal));
+        
+        // Fechar ao clicar no "X"
+        closeButtons.forEach(button => {
+            button.addEventListener('click', closeModal);
+        });
+
+        // Fechar ao clicar no fundo
+        backdrop.addEventListener('click', closeModal);
+    </script>
+</body>
+</html>
