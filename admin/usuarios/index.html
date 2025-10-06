@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Usuários</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section id="header"">
+        <div>
+            <h1>Gestão de Usuários</h1>
+            <p>Gerencie usuários e suas permissões no sistema</p>
+        </div>
+
+        <div id="div-aprov-solic">
+            Aprovar Solicitações
+        </div>
+    </section>
+
+    <!-- Modal Aprovar Solicitações -->
+    <div class="modal" id="modal-aprov-solic" aria-hidden="true" role="dialog" aria-modal="true">
+        <div class="modal-backdrop" data-close></div>
+        <div class="modal-dialog" role="document">
+            <button class="modal-close" id="modal-close" aria-label="Fechar" data-close>×</button>
+            <div class="modal-header">
+                <span class="modal-icon" aria-hidden="true">👤</span>
+                <div class="modal-title-group">
+                    <h2 class="modal-title">Aprovar Solicitações de Cadastro</h2>
+                    <p class="modal-subtitle">Nenhuma solicitação pendente</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="req-card">
+                    <div class="req-accent"></div>
+                    <div class="req-content">
+                        <div class="req-header">
+                            <div class="req-user">
+                                <div class="req-avatar">y</div>
+                                <div class="req-ident">
+                                    <div class="req-name">ytgvivyyyvi</div>
+                                    <div class="req-email">pedro@gmail.com</div>
+                                </div>
+                            </div>
+                            <span class="badge badge-pendente">Pendente</span>
+                        </div>
+
+                        <div class="req-meta">
+                            <div class="req-field"><span class="label">Usuário:</span><span class="value">ycutyytu</span></div>
+                            <div class="req-field"><span class="label">Setor:</span><span class="value">Administrativo</span></div>
+                            <span class="badge badge-solicitante">Solicitante</span>
+                            <div class="req-date">
+                                <span class="date">06/10/2025,</span>
+                                <span class="time">03:59</span>
+                            </div>
+                        </div>
+
+                        <div class="req-actions">
+                            <button type="button" class="btn btn-approve">Aprovar</button>
+                            <button type="button" class="btn btn-reject">Rejeitar</button>
+                        </div>
+
+                        <hr class="req-divider"/>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="modal-primary" data-close>Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <section id="pesquisa-filtros">
+        <input type="text" id="barra-pesquisa" placeholder="Buscar usuários...">
+        <select name="filtro-setores" id="filtro-setores">
+            <option value="Todos">Todos os Setores</option>
+            <option value="Administrativo">Administrativo</option>
+            <option value="Compras">Compras</option>
+            <option value="Financeiro">Financeiro</option>
+            <option value="RH">RH</option>
+            <option value="TI">TI</option>
+            <option value="Juridico">Juridico</option>
+            <option value="Logistica">Logística</option>
+            <option value="Marketing">Marketing</option>
+            <option value="Sustentabilidae">Sustentabilidade</option>
+            <option value="Comercial">Comercial</option>
+        </select>
+        <select name="filtro-perfis" id="filtro-perfis">
+            <option value="Todos">Todos os Perfis</option>
+            <option value="Administrador">Administrador</option>
+            <option value="Responsável">Responsável</option>
+            <option value="Solicitante">Solicitante</option>
+        </select>
+    </section>
+    
+    <section id="usuarios">
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div>
+
+
+        <div class="div-usuario">
+            <div class="div-dados-usuario">
+                <div class="img-user">PH</div>
+                <div class="div-nome-email">
+                    <span class="nome">Pedro Henrique</span>
+                    <span class="email">Administrador</span>
+                </div>   
+            </div>
+
+            <div class="div-setor-cargo">
+                <span class="setor">Compras</span>
+                <div class="div-cargo-status">
+                    <span class="cargo">Administrador</span>
+                    <span class="status">Ativo</span>
+                </div>
+            </div>
+
+            <div class="botoes-usuario">
+                <button type="button">Editar</button>
+                <div class="atv-desatv">
+                    <button type="button" class="ativar-usuario">Ativar</button>
+                    <button type="button" class="desativar-usuario">Desativar</button>
+                </div>
+                <button type="button" class="excluir-usuario">Excluir</button>
+            </div>
+        </div> 
+    </section>
+
+    <span id="resumo">Mostrando x de x usuários</span>
+
+    <script>
+    (function() {
+        var openBtn = document.getElementById('div-aprov-solic');
+        var modal = document.getElementById('modal-aprov-solic');
+        if (!openBtn || !modal) return;
+
+        function openModal() {
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+
+        openBtn.addEventListener('click', openModal);
+        modal.addEventListener('click', function(e) {
+            if (e.target.hasAttribute('data-close')) closeModal();
+        });
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') closeModal();
+        });
+    })();
+    </script>
+</body>
+</html>
