@@ -8,6 +8,7 @@
     <title>Assina+</title>
 </head>
 <body>
+    
     <section id="login-cadastro">
         <h1 id="title">Assina+</h1>
         <p id="subtitle">Faça login para acessar o sistema de gestão de contratos</p>
@@ -29,9 +30,9 @@
             <p class="subtitle-modal">Digite suas credenciais para acessar o sistema de gestão de contratos</p>
         </div>
         <div class="modal-body">
-            <form>
-                <label for="email">Usuário<input type="email" placeholder="Digite seu usuário" required></label>
-                <label for="senha">Senha<input type="password" placeholder="Digite sua senha" required></label>
+            <form id="loginForm" action="/../../../../Assina+/Controller/LoginController.php?action=validarLogin" method="POST">
+                <label for="email">Usuário<input type="email" id="email" name="email" value="" placeholder="Digite seu usuário" required></label>
+                <label for="senha">Senha<input type="password" id="senha" name="senha" value="" placeholder="Digite sua senha" required></label>
                 <button type="submit">Entrar</button>
             </form>
         </div>
@@ -45,7 +46,7 @@
             <p class="subtitle-modal">Preencha os dados para solicitar acesso ao sistema</p>
         </div>
         <div class="modal-body">
-            <form>
+            <form action="/../../../../Assina+/Controller/CadastroController.php?action=validarCadastro" method="POST">
                 <label for="nome">Nome Completo
                     <input type="text" placeholder="Seu nome completo" required>
                 </label>
@@ -125,11 +126,49 @@
         
         // Fechar ao clicar no "X"
         closeButtons.forEach(button => {
-            button.addEventListener('click', closeModal);
+            button.addEventListener('click', () => {
+                closeModal();
+                localStorage.removeItem('ultimo_email');
+                localStorage.removeItem('ultima_senha');
+
+                // Limpa os campos do formulário
+                emailInput.value = '';
+                senhaInput.value = '';
+            });
         });
+
 
         // Fechar ao clicar no fundo
         backdrop.addEventListener('click', closeModal);
+
+        // Armazena o e-mail digitado no localStorage
+        const emailInput = document.getElementById('email');
+        const senhaInput = document.getElementById('senha');
+        const loginForm = document.getElementById('loginForm');
+
+        loginForm.addEventListener('submit', () => {
+            localStorage.setItem('ultimo_email', emailInput.value);
+            localStorage.setItem('ultima_senha', senhaInput.value);
+        });
+
+        // Quando a página carrega, recupera o e-mail salvo (se existir)
+        window.addEventListener('load', () => {
+            const emailSalvo = localStorage.getItem('ultimo_email');
+            const senhaSalva = localStorage.getItem('ultima_senha');
+            if (emailSalvo) {
+                emailInput.value = emailSalvo;
+            }
+            if (senhaSalva) {
+                senhaInput.value = senhaSalva;
+            }
+        });
     </script>
+
+    <?php
+    if (isset($_GET['abrirModal']) && $_GET['abrirModal'] == 'login') { ?>
+        <script> openModal(loginModal); </script>
+    <?php
+    }
+    ?>
 </body>
 </html>
