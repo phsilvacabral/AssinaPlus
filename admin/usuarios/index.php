@@ -10,7 +10,7 @@
 include '../../connection.php'
 ?>
 <body>
-    <section id="header"">
+    <section id="header">
         <div>
             <h1>Gestão de Usuários</h1>
             <p>Gerencie usuários e suas permissões no sistema</p>
