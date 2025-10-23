@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\ManyToOne; // Para a relação N:1
-use Doctrine\ORM\Mapping\JoinColumn; // Para a chave estrangeira
+use Doctrine\ORM\Mapping\ManyToOne; 
+use Doctrine\ORM\Mapping\JoinColumn; 
 
 #[Entity]
 #[Table(name: "documento")]
@@ -25,16 +25,9 @@ class Documento
     #[Column(type: "string", length: 100)]
     private string $arquivo;
     
-    // --- RELACIONAMENTO: Muitos (Documento) para Um (Contrato) - LADO DONO ---
-    /**
-     * @var Contrato
-     * Lado Dono: Documento (MUITOS) | Lado Inverso: Contrato (UM)
-     */
     #[ManyToOne(targetEntity: Contrato::class, inversedBy: "documentos")]
     #[JoinColumn(name: "id_contrato", referencedColumnName: "id_contrato", nullable: false)]
     private Contrato $contrato;
-
-    // --- Getters e Setters ---
 
     public function getIdDocumento(): ?int
     {

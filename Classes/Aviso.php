@@ -7,8 +7,8 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\ManyToOne; // Para QuadroAviso (N:1)
-use Doctrine\ORM\Mapping\JoinColumn; // Para QuadroAviso (N:1)
+use Doctrine\ORM\Mapping\ManyToOne; 
+use Doctrine\ORM\Mapping\JoinColumn; 
 
 #[Entity]
 #[Table(name: "aviso")]
@@ -28,17 +28,9 @@ class Aviso
     #[Column(type: "string", length: 100)]
     private string $status;
     
-    // --- RELACIONAMENTO: Muitos (Aviso) para Um (QuadroAviso) - LADO DONO ---
-    /**
-     * @var QuadroAviso
-     * Lado Dono: Aviso (MUITOS) | Lado Inverso: QuadroAviso (UM)
-     * inversedBy="avisos": Mapeia de volta para a coleção na entidade QuadroAviso.
-     */
     #[ManyToOne(targetEntity: QuadroAviso::class, inversedBy: "avisos")]
-    #[JoinColumn(name: "id_quadro", referencedColumnName: "id_quadro")] // id_quadro é a FK
+    #[JoinColumn(name: "id_quadro", referencedColumnName: "id_quadro")] 
     private QuadroAviso $quadroAviso;
-
-    // --- Getters e Setters ---
     
     public function getIdAviso(): ?int
     {
@@ -80,7 +72,6 @@ class Aviso
         return $this->quadroAviso;
     }
 
-    // É crucial para manter a bidirecionalidade
     public function setQuadroAviso(QuadroAviso $quadroAviso): void
     {
         $this->quadroAviso = $quadroAviso;

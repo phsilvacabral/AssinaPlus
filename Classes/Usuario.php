@@ -27,7 +27,6 @@ class Usuario
     #[Column(type: "string", length: 255)]
     private string $nome;
 
-    // --- NOVOS CAMPOS ADICIONADOS ---
     #[Column(type: "string", length: 100)]
     private string $email;
     
@@ -37,70 +36,41 @@ class Usuario
     #[Column(type: "string", length: 100)]
     private string $tipo;
     
-    #[Column(type: "string", length: 100, unique: true)] // Geralmente é único
+    #[Column(type: "string", length: 100, unique: true)] 
     private string $nomeUsuario;
     
     #[Column(type: "boolean")]
     private bool $ativo;
-    // ---------------------------------
     
-    // --- RELACIONAMENTO: Muitos (Usuario) para Um (Setor) ---
     #[ManyToOne(targetEntity: Setor::class, inversedBy: "usuarios")]
     #[JoinColumn(name: "setor_id", referencedColumnName: "id", nullable: true)]
     private Setor $setor;
-    
-    // --- RELACIONAMENTO: Um (Usuario) para Um (QuadroAviso) - LADO DONO ---
-    /**
-     * @var QuadroAviso|null
-     * Lado Dono: Usuario (UM) | Lado Inverso: QuadroAviso (UM)
-     * mappedBy="usuario": Mapeia de volta para a entidade QuadroAviso.
-     */
+
     #[OneToOne(mappedBy: "usuario", targetEntity: QuadroAviso::class, cascade: ["persist", "remove"])]
     private ?QuadroAviso $quadroAviso = null;
 
-
-     // --- NOVO: Lado Inverso para Contratos como RESPONSÁVEL ---
-    /**
-     * @var Collection<int, Contrato>
-     */
     #[OneToMany(mappedBy: "responsavel", targetEntity: Contrato::class)]
     private Collection $contratosResponsavel;
 
-    // --- NOVO: Lado Inverso para Contratos como SOLICITANTE ---
-    /**
-     * @var Collection<int, Contrato>
-     */
     #[OneToMany(mappedBy: "solicitante", targetEntity: Contrato::class)]
     private Collection $contratosSolicitante;
 
     public function __construct()
     {
-        // Inicializações obrigatórias
         $this->contratosResponsavel = new ArrayCollection();
         $this->contratosSolicitante = new ArrayCollection();
         
-        // ... [Outras inicializações de coleções existentes] ...
     }
-    
-    // --- Getters para as novas coleções (Responsável) ---
-    /**
-     * @return Collection<int, Contrato>
-     */
+
     public function getContratosResponsavel(): Collection
     {
         return $this->contratosResponsavel;
     }
 
-    // --- Getters para as novas coleções (Solicitante) ---
-    /**
-     * @return Collection<int, Contrato>
-     */
     public function getContratosSolicitante(): Collection
     {
         return $this->contratosSolicitante;
     }
-    
-    // --- Getters e Setters (Antigos) ---
 
     public function getId(): ?int
     {
@@ -117,8 +87,6 @@ class Usuario
         $this->nome = $nome;
     }
 
-    // --- Getters e Setters (Novos para a relação Setor) ---
-
     public function getSetor(): Setor
     {
         return $this->setor;
@@ -128,9 +96,7 @@ class Usuario
     {
         $this->setor = $setor;
     }
-    
-    // --- Getters e Setters (Novos Campos) ---
-
+ 
     public function getEmail(): string
     {
         return $this->email;
@@ -181,18 +147,14 @@ class Usuario
         $this->ativo = $ativo;
     }
 
-    // --- Getters e Setters (Novos para a relação QuadroAviso) ---
-
     public function getQuadroAviso(): ?QuadroAviso
     {
         return $this->quadroAviso;
     }
 
-    // Método para definir o quadro de aviso e garantir a bidirecionalidade
     public function setQuadroAviso(?QuadroAviso $quadroAviso): void
     {
         $this->quadroAviso = $quadroAviso;
-        // Se o quadro existe e não tem este usuário definido, defina-o (garantindo a bidirecionalidade)
         if ($quadroAviso !== null && $quadroAviso->getUsuario() !== $this) {
             $quadroAviso->setUsuario($this);
         }

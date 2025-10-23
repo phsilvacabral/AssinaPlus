@@ -7,9 +7,9 @@ use Doctrine\ORM\Mapping\Table;
 use Doctrine\ORM\Mapping\Id;
 use Doctrine\ORM\Mapping\Column;
 use Doctrine\ORM\Mapping\GeneratedValue;
-use Doctrine\ORM\Mapping\ManyToOne; // Para os dois relacionamentos N:1
-use Doctrine\ORM\Mapping\JoinColumn; // Para as chaves estrangeiras
-use Doctrine\ORM\Mapping\OneToMany; // Para a relação 1:N com Documento
+use Doctrine\ORM\Mapping\ManyToOne; 
+use Doctrine\ORM\Mapping\JoinColumn; 
+use Doctrine\ORM\Mapping\OneToMany; 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 
@@ -31,31 +31,14 @@ class Contrato
     #[Column(name: "data_fim", type: "date", nullable: true)]
     private ?\DateTimeInterface $dataFim = null;
     
-    // --- RELACIONAMENTO 1: Responsável (Muitos Contratos para Um Usuário) ---
-    /**
-     * @var Usuario
-     * Lado Dono: Contrato (MUITOS) | Lado Inverso: Usuario (UM)
-     * Referencia o Usuario que é o RESPONSÁVEL pelo contrato.
-     */
     #[ManyToOne(targetEntity: Usuario::class, inversedBy: "contratosResponsavel")]
     #[JoinColumn(name: "id_responsavel", referencedColumnName: "id", nullable: false)]
     private Usuario $responsavel;
 
-    // --- RELACIONAMENTO 2: Solicitante (Muitos Contratos para Um Usuário) ---
-    /**
-     * @var Usuario
-     * Lado Dono: Contrato (MUITOS) | Lado Inverso: Usuario (UM)
-     * Referencia o Usuario que é o SOLICITANTE do contrato.
-     */
     #[ManyToOne(targetEntity: Usuario::class, inversedBy: "contratosSolicitante")]
     #[JoinColumn(name: "id_solicitante", referencedColumnName: "id", nullable: false)]
     private Usuario $solicitante;
     
-    // --- RELACIONAMENTO 3: Contrato (1) para Documento (N) ---
-    /**
-     * @var Collection<int, Documento>
-     * Lado Dono: Contrato (UM) | Lado Inverso: Documento (MUITOS)
-     */
     #[OneToMany(mappedBy: "contrato", targetEntity: Documento::class)]
     private Collection $documentos;
 
@@ -63,8 +46,6 @@ class Contrato
     {
         $this->documentos = new ArrayCollection();
     }
-    
-    // --- Getters e Setters ---
 
     public function getIdContrato(): ?int
     {
@@ -121,15 +102,11 @@ class Contrato
         $this->solicitante = $solicitante;
     }
     
-    /**
-     * @return Collection<int, Documento>
-     */
     public function getDocumentos(): Collection
     {
         return $this->documentos;
     }
 
-    // Método para adicionar Documento e garantir a bidirecionalidade
     public function addDocumento(Documento $documento): void
     {
         if (!$this->documentos->contains($documento)) {
